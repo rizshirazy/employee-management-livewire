@@ -53,7 +53,10 @@
                             <td>{{ $user->username }}</td>
                             <td>{{ $user->email }}</td>
                             <td>
-                                <a href="#" class="btn btn-success">Edit</a>
+                                <button wire:click="showEditModal({{ $user->id }})"
+                                        class="btn btn-success">Edit</button>
+                                <button wire:click="deleteUser({{ $user->id }})"
+                                        class="btn btn-danger">Delete</button>
                             </td>
                         </tr>
 
@@ -72,8 +75,12 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="mainModalLabel">Modal title</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <h5 class="modal-title" id="mainModalLabel">@if ($editMode)
+                            Update User
+                            @else
+                            Create New User
+                            @endif</h5>
+                        <button type="button" class="close" wire:click="closeModal()" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -148,6 +155,7 @@
                                 </div>
                             </div>
 
+                            @if (!$editMode)
                             <div class="form-group row">
                                 <label for="password"
                                        class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
@@ -164,11 +172,16 @@
                                     @enderror
                                 </div>
                             </div>
+                            @endif
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" wire:click="closeModal()">Close</button>
+                        @if ($editMode)
+                        <button type="button" class="btn btn-primary" wire:click="updateUser()">Update</button>
+                        @else
                         <button type="button" class="btn btn-primary" wire:click="storeUser()">Save</button>
+                        @endif
                     </div>
                 </div>
             </div>

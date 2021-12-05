@@ -186,6 +186,10 @@
         window.addEventListener('closeModal', event => {
             $('#mainModal').modal('hide')
         });
+
+        window.addEventListener('showModal', event => {
+            $('#mainModal').modal('show')
+        });
     </script>
 </body>
 
