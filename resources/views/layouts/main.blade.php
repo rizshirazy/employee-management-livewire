@@ -181,6 +181,12 @@
     @stack('modals')
 
     @livewireScripts
+
+    <script>
+        window.addEventListener('closeModal', event => {
+            $('#mainModal').modal('hide')
+        });
+    </script>
 </body>
 
 </html>

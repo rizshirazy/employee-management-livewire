@@ -25,7 +25,9 @@
                         </form>
                     </div>
                     <div>
-                        <a href="#" class="btn btn-primary mb-2">Create</a>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mainModal">
+                            Add User
+                        </button>
                     </div>
                 </div>
             </div>
@@ -62,6 +64,113 @@
                         @endforelse
                     </tbody>
                 </table>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="mainModal" tabindex="-1" aria-labelledby="mainModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="mainModalLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group row">
+                                <label for="username"
+                                       class="col-md-4 col-form-label text-md-right">{{ __('Username') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="username" type="text"
+                                           class="form-control @error('name') is-invalid @enderror"
+                                           wire:model.defer="username"
+                                           autofocus>
+
+                                    @error('username')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="firstName"
+                                       class="col-md-4 col-form-label text-md-right">{{ __('First Name') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="first_name" type="text"
+                                           class="form-control @error('name') is-invalid @enderror"
+                                           wire:model.defer="firstName">
+
+                                    @error('firstName')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="lastName"
+                                       class="col-md-4 col-form-label text-md-right">{{ __('Last Name') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="lastName" type="text"
+                                           class="form-control @error('name') is-invalid @enderror"
+                                           wire:model.defer="lastName">
+
+                                    @error('lastName')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="email"
+                                       class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="email" type="email"
+                                           class="form-control @error('email') is-invalid @enderror"
+                                           wire:model.defer="email">
+
+                                    @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="password"
+                                       class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+
+                                <div class="col-md-6">
+                                    <input id="password" type="password"
+                                           class="form-control @error('password') is-invalid @enderror"
+                                           wire:model.defer="password">
+
+                                    @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" wire:click="storeUser()">Save</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
